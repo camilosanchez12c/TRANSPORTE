@@ -4,174 +4,170 @@
 {% block title %}Dashboard Operador{% endblock %}
 
 {% block extra_head %}
-  <!-- Fuente y CSS propio del operador -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'core/css/operador.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="app-root">
+<div class="page-root">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar" role="navigation" aria-label="Menú principal">
-    <div class="brand">
-      <img src="{% static 'core/img/logo.png' %}" alt="logo" class="brand-logo">
-    </div>
-
-    <nav class="nav">
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M3 10.5L12 4l9 6.5" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M9 21V12h6v9" stroke="currentColor" stroke-width="1.6"/>
-        </svg>
-        <span>Inicio</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <rect x="3" y="3" width="8" height="8" stroke="currentColor" stroke-width="1.4"/>
-          <rect x="13" y="3" width="8" height="8" stroke="currentColor" stroke-width="1.4"/>
-        </svg>
-        <span>Vals Asignaciones</span>
-      </a>
-
-      <a class="nav-item active" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M3 21l3-1 12-12 2 2L10 22l-7 0z" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Mis Asignaciones</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <circle cx="9" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M2 21c1-4 8-4 9-4s8 0 9 4" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Operadores</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.4"/>
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Historial</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M20 6H4" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M20 12H4" stroke="currentColor" stroke-width="1.2"/>
-          <path d="M20 18H4" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Vehículos</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Documentos</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M3 7h18v10H3z" stroke="currentColor" stroke-width="1.6"/>
-        </svg>
-        <span>Solicitudes</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4" stroke="currentColor" stroke-width="1.2"/>
-        </svg>
-        <span>Configuración</span>
-      </a>
-    </nav>
-
-    
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main" role="main">
-    <!-- header top -->
-    <header class="header">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
       <div class="header-left">
-        <h1>Dashboard Operador</h1>
+        <button class="toggle-sidebar" aria-label="Abrir menú">
+          <span class="hamb-bar"></span>
+          <span class="hamb-bar"></span>
+          <span class="hamb-bar"></span>
+        </button>
+        <img src="{% static 'core/img/logo.png' %}" alt="Logo" class="header-logo">
+        <h1 class="header-title">Dashboard Operador</h1>
       </div>
+
       <div class="header-right">
         <nav class="top-links" aria-label="Enlaces superiores">
-          <a href="#" class="muted">Empresa</a>
-          <a href="#" class="muted">Para Empresas</a>
+          <a href="#" class="top-link">Empresa</a>
+          <a href="#" class="top-link">Para Empresas</a>
         </nav>
         <button class="btn btn-outline">INGRESAR</button>
         <div class="avatar" title="Usuario">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden>
-            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M4 20c1.5-4 14-4 16 0" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M4 20c1.5-4 14-4 16 0" stroke="currentColor" stroke-width="1.4"/>
           </svg>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="content">
-      <!-- KPI cards -->
+  <!-- SIDEBAR -->
+  <aside class="sidebar" role="navigation" aria-label="Menú operador">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <img src="{% static 'core/img/logo.png' %}" alt="Logo" class="sidebar-brand-img">
+        <span class="sidebar-brand-text">Menú Operador</span>
+      </div>
+      <button class="close-sidebar" aria-label="Cerrar menú">&times;</button>
+    </div>
+
+    <nav class="nav">
+      <a href="#" class="nav-item active"><span class="nav-icon">🏠</span><span>Inicio</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">🧾</span><span>Vals Asignaciones</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">📋</span><span>Mis Asignaciones</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">👤</span><span>Operadores</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">🕓</span><span>Historial</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">🚐</span><span>Vehículos</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">📄</span><span>Documentos</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">📨</span><span>Solicitudes</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">⚙️</span><span>Configuración</span></a>
+    </nav>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <!-- MAIN -->
+  <main class="main" role="main">
+    <section class="content-shell">
+      <!-- KPIs -->
       <div class="kpis-row">
-        <div class="card card-highlight kpi-large">
-          <h3>Asignación Actual</h3>
-          <div class="kpi-number">1</div>
+        <div class="card kpi selected">
+          <div class="kpi">
+            <h3>Asignación Actual</h3>
+            <div class="kpi-number">1</div>
+          </div>
         </div>
 
-        <div class="card kpi-large">
-          <h3>Servicios</h3>
-          <div class="kpi-number">3</div>
+        <div class="card kpi">
+          <div class="kpi">
+            <h3>Servicios</h3>
+            <div class="kpi-number">3</div>
+          </div>
         </div>
 
-        <div class="card kpi-large">
-          <h3>Servicios Completados</h3>
-          <div class="kpi-number">8</div>
-          <div class="kpi-sub">3D Servicios Activos Hoy</div>
+        <div class="card kpi">
+          <div class="kpi">
+            <h3>Completados</h3>
+            <div class="kpi-number">8</div>
+            <div class="kpi-sub">3 activos hoy</div>
+          </div>
         </div>
       </div>
 
-      <!-- section title -->
       <h2 class="section-title">Próximos Servicios Asignados</h2>
 
-      <!-- main big card -->
-      <div class="big-card">
-        <div class="big-card-side" aria-hidden></div>
-        <div class="big-card-content">
+      <div class="big-card highlighted">
+        <div class="accent-bar"></div>
+        <div>
           <h3>Viaje #2024-03-15-001</h3>
-          <p class="muted small"><strong>Cliente:</strong> Logística del Sur</p>
-          <p class="muted small"><strong>Origen:</strong> Bogotá - Medellín - Plaza Mayor</p>
-          <p class="muted small"><strong>Fecha y Hora:</strong> Hoy, 15:00</p>
-          <p class="muted small"><strong>Pasajeros:</strong> 15</p>
+          <p class="muted"><strong>Cliente:</strong> Logística del Sur</p>
+          <p class="muted"><strong>Ruta:</strong> Bogotá - Medellín</p>
+          <p class="muted"><strong>Hora:</strong> Hoy, 15:00</p>
         </div>
-        <div class="big-card-actions">
-          <button class="btn btn-primary">INICIAR SERVICIO</button>
-        </div>
+        <button class="top-cta">INICIAR SERVICIO</button>
       </div>
 
-      <!-- table -->
-      <div class="panel table-panel">
-        <h2>Otras Asignaciones Pendientes</h2>
-        <div class="table-wrap">
-          <table class="styled-table" role="table" aria-label="Asignaciones">
-            <thead>
-              <tr>
-                <th>ID</th><th>Ruta</th><th>Cliente</th><th>Estado</th><th>Fecha</th><th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>Cliente</td><td>OrerirHar Logística del Sur</td><td>10</td><td>10</td><td><span class="dot dot-orange"></span></td></tr>
-              <tr><td>2</td><td>Fruta</td><td>Validar empresa</td><td>10</td><td>10</td><td><span class="dot dot-orange"></span></td></tr>
-              <tr><td>3</td><td>Fruta</td><td>Confirmado Niza Mout</td><td>15</td><td>10</td><td><span class="dot dot-dark"></span></td></tr>
-              <tr><td>11</td><td>Finalizado</td><td>Polkadada 2al Pita</td><td>10</td><td>17</td><td><span class="dot dot-orange"></span></td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="table-card">
+        <h3>Otras Asignaciones Pendientes</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>ID</th><th>Ruta</th><th>Cliente</th><th>Estado</th><th>Fecha</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Cliente</td><td>Logística Sur</td><td>En Curso</td><td>Hoy</td></tr>
+            <tr><td>2</td><td>Fruta</td><td>Validar empresa</td><td>Pendiente</td><td>Mañana</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Privacidad</span> · <span>Términos</span>
+    </div>
+  </footer>
 </div>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.querySelector(".sidebar-overlay");
+  const toggle = document.querySelector(".toggle-sidebar");
+  const closeBtn = document.querySelector(".close-sidebar");
+  const navItems = document.querySelectorAll(".nav-item");
+  const kpiCards = document.querySelectorAll(".card.kpi");
+
+  toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("visible");
+  });
+  closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("visible");
+  });
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("visible");
+  });
+
+  // Animación de selección en el menú
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      navItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+    });
+  });
+
+  // Animación en KPI al hacer click
+  kpiCards.forEach(card => {
+    card.addEventListener("click", () => {
+      kpiCards.forEach(c => c.classList.remove("selected"));
+      card.classList.add("selected");
+    });
+  });
+});
+</script>
+
 {% endblock %}

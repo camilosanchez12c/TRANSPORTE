@@ -8,137 +8,225 @@
 {% endblock %}
 
 {% block content %}
+<div class="dashboard-root">
 
-<div class="admin-container">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="logo">
-      <img src="{% static 'core/img/logo.png' %}" alt="Logo">
+  <!-- TOPBAR -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <img src="{% static 'core/img/logo.png' %}" alt="Logo" class="topbar-logo">
+        <div class="topbar-title">Dashboard Administrador</div>
+      </div>
+
+      <div class="topbar-right">
+        <nav class="top-links" aria-label="Top links">
+          <a href="#" class="top-link">Empresa</a>
+          <a href="#" class="top-link">Para Empresas</a>
+        </nav>
+
+        <button class="btn ingresar">INGRESAR</button>
+        <button class="avatar" aria-hidden="true">👤</button>
+
+        <!-- Hamburger (three stacked bars). Visible only on mobile via CSS -->
+        <button id="hamburger" class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </div>
-    <nav class="menu">
-      <a href="#" class="menu-item active"><i class="icon">🏠</i> Inicio</a>
-      <a href="#" class="menu-item"><i class="icon">📄</i> Validación Documental</a>
-      <a href="#" class="menu-item"><i class="icon">🏢</i> Empresas</a>
-      <a href="#" class="menu-item"><i class="icon">👷</i> Operadores</a>
-      <a href="#" class="menu-item"><i class="icon">🚗</i> Vehículos</a>
-      <a href="#" class="menu-item"><i class="icon">📝</i> Solicitudes</a>
-      <a href="#" class="menu-item"><i class="icon">⚙️</i> Configuración</a>
-    </nav>
+  </header>
+
+  <!-- Overlay for mobile menu -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- SIDEBAR (desktop) & offcanvas (mobile) -->
+  <aside id="sidebar" class="sidebar" aria-hidden="false" role="navigation" aria-label="Sidebar">
+    <div class="sidebar-inner">
+
+      <!-- Mobile header inside menu (visible only on mobile) -->
+      <div class="sidebar-header-mobile" id="sidebarHeaderMobile" aria-hidden="true">
+        <div class="sidebar-mobile-left">
+          <img src="{% static 'core/img/logo.png' %}" alt="logo" class="sidebar-mobile-logo">
+          <div class="sidebar-mobile-title">Menú Administrador</div>
+        </div>
+        <button id="closeSidebar" class="close-sidebar" aria-label="Cerrar menú">✖</button>
+      </div>
+
+      <!-- duplicated top-links for mobile (hidden on desktop) -->
+      <div class="mobile-toplinks">
+        <a href="#" class="menu-item mobile-link"><span class="ico">🏢</span><span>Empresa</span></a>
+        <a href="#" class="menu-item mobile-link"><span class="ico">📣</span><span>Para Empresas</span></a>
+      </div>
+
+      <!-- Main nav -->
+      <nav class="menu" aria-label="Navegación principal">
+        <a href="#" class="menu-item active"><span class="ico">🏠</span><span>Inicio</span></a>
+        <a href="#" class="menu-item"><span class="ico">🚚</span><span>Vals Asignaciones</span></a>
+        <a href="#" class="menu-item"><span class="ico">✏️</span><span>Editar</span></a>
+        <a href="#" class="menu-item"><span class="ico">📋</span><span>Gestión de Flota</span></a>
+        <a href="#" class="menu-item"><span class="ico">👷</span><span>Operadores</span></a>
+        <a href="#" class="menu-item"><span class="ico">🚗</span><span>Vehículos</span></a>
+        <a href="#" class="menu-item"><span class="ico">📥</span><span>Solicitudes Recibidas</span></a>
+        <a href="#" class="menu-item"><span class="ico">📦</span><span>Mis Ofertas</span></a>
+        <a href="#" class="menu-item"><span class="ico">⚙️</span><span>Configuración</span></a>
+      </nav>
+
+      <div class="sidebar-footer">© 2025 · Información Legal</div>
+    </div>
   </aside>
 
-  <!-- Contenido principal -->
-  <main class="main-content">
-    <header class="top-bar">
-      <div class="top-links">
-        <a href="#">Empresas</a>
-        <a href="#">Cómo Funcionamos</a>
-        <a href="#">Para Empresas</a>
-      </div>
-      <button class="btn-login">INGRESAR</button>
-    </header>
+  <!-- MAIN -->
+  <main class="main" role="main">
+    <div class="container">
 
-    <section class="dashboard">
-      <!-- Tarjetas principales -->
-      <div class="cards">
-        <div class="card">
-          <h2>17</h2>
-          <p>Validaciones</p>
-          <span>Validaciones Pendientes (17)</span>
-        </div>
-        <div class="card">
-          <h2>125</h2>
-          <p>Empresas Registradas</p>
-          <span>50 Servicios Activos Hoy</span>
-        </div>
-        <div class="card">
-          <h2>48</h2>
-          <p>Servicios Registrados</p>
-          <button class="btn-secondary">REGÍSTRATE COMO EMPRESA</button>
-        </div>
-      </div>
+      <!-- KPIs -->
+      <section class="kpis" aria-label="Estadísticas principales">
+        <article class="kpi" data-kpi="validaciones" tabindex="0">
+          <h4>Validaciones</h4>
+          <div class="kpi-number">17</div>
+          <div class="kpi-sub">Validaciones Pendientes (17)</div>
+        </article>
+
+        <article class="kpi" data-kpi="empresas" tabindex="0">
+          <h4>Empresas Registradas</h4>
+          <div class="kpi-number">125</div>
+          <div class="kpi-sub">50 Servicios Activos Hoy</div>
+        </article>
+
+        <article class="kpi" data-kpi="servicios" tabindex="0">
+          <h4>Servicios Registrados</h4>
+          <div class="kpi-number">48</div>
+          <div class="kpi-sub">Activos</div>
+        </article>
+      </section>
 
       <!-- Accesos rápidos -->
-      <div class="quick-access">
-        <h3>Accesos Rápidos</h3>
-        <div class="buttons">
-          <button class="btn-primary">Nueva Solicitud</button>
-          <button class="btn-primary">Registrar Empresa</button>
-          <button class="btn-disabled">Generar Enpote</button>
+      <section class="quick-access">
+        <h5>Accesos Rápidos</h5>
+        <div class="actions">
+          <button class="btn btn-accent">Nueva Solicitud</button>
+          <button class="btn btn-outline">Registrar Empresa</button>
+          <button class="btn btn-disabled" disabled>Generar Enpote</button>
         </div>
-      </div>
+      </section>
 
-      <!-- Gráfico y tareas -->
-      <div class="stats-section">
-        <div class="chart-box">
-          <h4>Actividad Mensual</h4>
-          <img src="{% static 'core/img/chart-placeholder.png' %}" alt="Gráfico">
+      <!-- Resumen, chart y tareas -->
+      <section class="summary-row">
+        <div class="summary-cards">
+          <div class="card small">
+            <h6>Vehículos Disponibles</h6>
+            <p>Total: 22</p>
+          </div>
+          <div class="card small">
+            <h6>Operadores Activos</h6>
+            <p>Activos: 22</p>
+          </div>
+          <div class="card small action-card">
+            <h6>Crear Nueva Oferta</h6>
+            <p>Revisar empresa "Logística del Sur"</p>
+            <button class="btn btn-blue full">GENERAR OFERTA</button>
+          </div>
         </div>
-        <div class="tasks-box">
-          <h4>Lista de Tareas Pendientes</h4>
-          <p>Revisar empresa "Logística del Sur"</p>
-        </div>
-      </div>
 
-      <!-- Tabla de solicitudes -->
-      <div class="table-section">
-        <h4>Solicitudes recientes</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Ruta</th>
-              <th>Cliente</th>
-              <th>Estado</th>
-              <th>Fetao</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Cliente</td>
-              <td>Revisar Logística del Sur</td>
-              <td>1D</td>
-              <td>1D</td>
-              <td><span class="status orange"></span></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Eruta</td>
-              <td>Validar empresa era</td>
-              <td>15</td>
-              <td>10</td>
-              <td><span class="status blue"></span></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Pendiente</td>
-              <td>Confirmado</td>
-              <td>16</td>
-              <td>15</td>
-              <td><span class="status gray"></span></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Finalizado</td>
-              <td>Validar empresa venta</td>
-              <td>15</td>
-              <td>13</td>
-              <td><span class="status orange"></span></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Finalizado</td>
-              <td>Loilrdad Zil Fite</td>
-              <td>10</td>
-              <td>17</td>
-              <td><span class="status blue"></span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <div class="chart-tasks">
+          <div class="chart">
+            <h6>Actividad Mensual</h6>
+            <img src="{% static 'core/img/chart-placeholder.png' %}" alt="Gráfico">
+          </div>
+          <aside class="tasks">
+            <h6>Lista de Tareas Pendientes</h6>
+            <ul>
+              <li>Revisar empresa "Logística del Sur"</li>
+              <li>Generar oferta para Transporte Alfa</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Tabla -->
+      <section class="table-section">
+        <h5>Solicitudes de Servicio Recibidas</h5>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr><th>ID</th><th>Ruta</th><th>Cliente</th><th>Estado</th><th>Fecha</th><th>Indicador</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Cali - Bogotá</td><td>Logística del Sur</td><td>En Curso</td><td>10/10</td><td><span class="dot orange"></span></td></tr>
+              <tr><td>2</td><td>Eruta</td><td>Validar empresa era</td><td>Pendiente</td><td>12/10</td><td><span class="dot blue"></span></td></tr>
+              <tr><td>3</td><td>Pendiente</td><td>Confirmado</td><td>Completado</td><td>15/10</td><td><span class="dot gray"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="page-footer"></div>
+    </div>
   </main>
 </div>
 
+<!-- JS: toggles, keyboard a11y, KPI selection -->
+<script>
+(function(){
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  const closeSidebar = document.getElementById('closeSidebar');
+  const overlay = document.getElementById('overlay');
+  const menuItems = document.querySelectorAll('.menu-item');
+  const kpis = document.querySelectorAll('.kpi');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.classList.add('no-scroll');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebarFn() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.classList.remove('no-scroll');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (hamburger) {
+    hamburger.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('open')) closeSidebarFn();
+      else openSidebar();
+      e.stopPropagation();
+    });
+  }
+
+  if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFn);
+  if (overlay) overlay.addEventListener('click', closeSidebarFn);
+
+  // menu items: set active (desktop + mobile). On mobile do not auto-close (per request).
+  menuItems.forEach(it => {
+    it.addEventListener('click', (e) => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      it.classList.add('active');
+      e.stopPropagation();
+    });
+  });
+
+  // KPI selection persistent glow
+  kpis.forEach(card => {
+    card.addEventListener('click', () => {
+      kpis.forEach(c => c.classList.remove('kpi-active'));
+      card.classList.add('kpi-active');
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+
+  // ensure resets on resize > 900px
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeSidebarFn();
+  });
+
+  // initial fix so mobile starts at top
+  window.addEventListener('load', () => { window.scrollTo(0,0); });
+})();
+</script>
 {% endblock %}
